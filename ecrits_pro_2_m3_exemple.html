@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Exemple commenté — Un récapitulatif de prise en charge</title>
+<style>
+:root{--prune:#8C1E70;--prune-fonce:#5E1349;--prune-clair:#F4E6EE;--accent:#C77BAA;
+ --vert:#283C28;--gris:#3C3C3C;--gris-moyen:#8A7A85;--filet:#E8DCE5;--creme:#FAF6F8;
+ --ok:#2F7A4F;--ko:#B23B3B;--amb:#B5852A;}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--gris);
+ font-family:"Nunito","Segoe UI",Helvetica,Arial,sans-serif;font-size:16px;line-height:1.62}
+.wrap{max-width:900px;margin:0 auto;padding:0 18px 60px}
+header.bandeau{background:var(--prune-fonce);color:#fff;padding:18px 0;border-bottom:4px solid var(--accent)}
+header.bandeau .wrap{padding-bottom:0}
+.chapitre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:#EAD3E3}
+.chapitre span{color:var(--accent);margin:0 6px}
+h1{font-family:Georgia,"Times New Roman",serif;font-size:27px;line-height:1.25;margin:8px 0 4px;color:#fff}
+.sous{color:#EAD3E3;font-size:14.5px;margin:0}
+h2{font-family:Georgia,"Times New Roman",serif;font-size:20px;color:var(--prune-fonce);
+ margin:34px 0 0;padding-bottom:8px;border-bottom:2px solid var(--filet)}
+h2 .num{color:var(--accent);margin-right:8px}
+h3{font-size:15px;color:var(--vert);margin:20px 0 8px;letter-spacing:.02em}
+.carte{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:20px 22px;margin:18px 0;
+ box-shadow:0 1px 2px rgba(94,19,73,.05)}
+.enc{background:var(--prune-clair);border-left:5px solid var(--prune);padding:14px 18px;
+ border-radius:0 8px 8px 0;margin:18px 0;font-size:15.2px}
+.enc .t{display:block;font-size:11.5px;letter-spacing:.11em;text-transform:uppercase;
+ font-weight:800;color:var(--prune-fonce);margin-bottom:6px}
+.enc.al{background:#FBF4F4;border-left-color:var(--ko)}.enc.al .t{color:var(--ko)}
+.enc.ci{background:#FCF8F0;border-left-color:var(--amb)}.enc.ci .t{color:#8A6418}
+.situ{background:#FCF9FB;border:1px dashed var(--filet);border-radius:8px;padding:16px 18px;margin:16px 0;font-size:15.2px}
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:16px 0}
+.duo>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:15px 17px;font-size:14.8px}
+.duo .h{font-weight:800;color:var(--prune-fonce);margin-bottom:7px;font-size:14.5px}
+.tri{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}
+.tri>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:14px 15px;font-size:14.3px}
+.quad{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}
+.quad>div{background:#fff;border:1px solid var(--filet);border-radius:9px;padding:12px 13px;font-size:13.6px}
+.quad .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13px;
+ text-transform:uppercase;letter-spacing:.04em}
+.tri .h{font-weight:800;color:var(--prune-fonce);margin-bottom:6px;font-size:13.5px;
+ text-transform:uppercase;letter-spacing:.05em}
+table{width:100%;border-collapse:collapse;margin:14px 0;font-size:14.8px;background:#fff}
+th,td{border:1px solid var(--filet);padding:9px 12px;text-align:left}
+thead th{background:var(--prune-clair);color:var(--prune-fonce);font-size:13.5px}
+tbody th{font-weight:600;color:var(--gris)}
+td.n{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.tot td,tr.tot th{background:#FBF3F8;font-weight:800;color:var(--prune-fonce)}
+.dl{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;text-decoration:none;
+ padding:11px 20px;border-radius:8px;font-weight:700;font-size:15px;margin:20px 0 4px}
+.dl:hover{background:var(--prune-fonce)}
+ol.q{padding-left:0;list-style:none;counter-reset:q}
+ol.q>li{margin:16px 0;padding-left:38px;position:relative}
+ol.q>li::before{counter-increment:q;content:counter(q);position:absolute;left:0;top:1px;
+ width:26px;height:26px;border-radius:50%;background:var(--prune-clair);color:var(--prune-fonce);
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
+b,strong{color:var(--vert)}
+footer{text-align:center;font-size:12.5px;color:var(--gris-moyen);padding:26px 18px 12px;
+ border-top:1px solid var(--filet);margin-top:44px}
+@media(max-width:860px){.quad{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.duo,.tri,.quad{grid-template-columns:1fr}h1{font-size:22px}}
+@media print{body{background:#fff}.dl{display:none}header.bandeau{background:#5E1349 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+
+.mail{background:#fff;border:1px solid var(--filet);border-radius:10px;padding:0;margin:16px 0;overflow:hidden}
+.mail .ent{background:#F7F1F5;border-bottom:1px solid var(--filet);padding:10px 16px;font-size:14px}
+.mail .ent b{color:var(--prune-fonce)}
+.mail .txt{padding:14px 18px;font-size:15.2px}
+.mail p{margin:0 0 10px}
+.err{background:#FDECEC;border-bottom:2px solid var(--ko);padding:0 2px;border-radius:3px}
+.cor{display:none;background:#E9F6EE;border-bottom:2px solid var(--ok);padding:0 2px;border-radius:3px;color:var(--ok);font-weight:700}
+.nf{font-size:11px;vertical-align:super;font-weight:800;color:var(--ko)}
+body.vu .err{text-decoration:line-through;background:none;border:0;color:var(--gris-moyen)}
+body.vu .cor{display:inline}
+.btn{display:inline-flex;align-items:center;gap:9px;background:var(--prune);color:#fff;border:0;
+ padding:12px 22px;border-radius:8px;font-family:inherit;font-weight:800;font-size:15px;cursor:pointer}
+.btn:hover{background:var(--prune-fonce)}
+.liste{display:none}body.vu .liste{display:block}
+</style></head>
+<body>
+<header class="bandeau"><div class="wrap">
+ <div class="chapitre">Écrits professionnels 2/6 <span>/</span> Module 3</div><h1>Un récapitulatif de prise en charge</h1><p class="sous">Exemple commenté — L'accord du participe passé</p>
+</div></header>
+<div class="wrap">
+
+<h2><span class="num">1 ·</span>Le mail tel qu'il a été écrit</h2>
+<div class="carte">
+<p>Après un appel au service après-vente, un conseiller envoie le récapitulatif à sa cliente, dont l'aspirateur est tombé en panne. Les informations sont justes, mais <b>HUIT PARTICIPES PASSÉS</b> sont mal accordés. Ce type de mail est conservé dans le dossier : il doit être irréprochable. Lisez-le, cherchez les fautes, puis affichez la correction.</p>
+<div class="mail">
+ <div class="ent"><b>Objet :</b> Récapitulatif de votre demande de prise en charge</div>
+ <div class="txt"><p>Bonjour Madame Benali,</p><p>Je vous remercie pour notre échange de ce matin. Votre demande de prise en charge a bien été <span class="err">enregistré</span> <span class="cor">enregistrée</span><span class="nf">1</span>.</p><p>Comme je vous l'ai expliqué, notre service après-vente doit vérifier la date d'achat et l'état de l'appareil avant toute réparation : c'est une étape <span class="err">imposé</span> <span class="cor">imposée</span><span class="nf">2</span> par nos conditions de garantie. Les pièces que vous m'avez <span class="err">transmis</span> <span class="cor">transmises</span><span class="nf">3</span> — facture d'achat, photos de l'appareil et numéro de série — ont été <span class="err">vérifié</span> <span class="cor">vérifiées</span><span class="nf">4</span> et <span class="err">numérisé</span> <span class="cor">numérisées</span><span class="nf">5</span>.</p><p>Nous avons <span class="err">reçus</span> <span class="cor">reçu</span><span class="nf">6</span> le colis que vous avez déposé lundi au point relais. La date de réparation que vous avez <span class="err">choisi</span> <span class="cor">choisie</span><span class="nf">7</span> vous sera confirmée par SMS ; le technicien vous appellera la veille.</p><p>Les conditions de garantie vous ont été <span class="err">remis</span> <span class="cor">remises</span><span class="nf">8</span> lors de votre achat : vous les trouverez aussi dans votre espace client.</p><p>Je reste à votre disposition pour toute question.</p><p>Karim Delattre — Conseiller clientèle</p></div>
+</div>
+<button class="btn" id="voir" onclick="document.body.classList.add('vu');this.style.display='none'">Afficher la correction</button>
+</div>
+
+<div class="liste">
+<h2><span class="num">2 ·</span>Les corrections, une par une</h2>
+<div class="carte">
+<table><thead><tr><th>N°</th><th>Point</th><th>Le raisonnement</th></tr></thead><tbody><tr><td><b>1</b></td><td>avec être (passif)</td><td>« a été » = auxiliaire être. Le participe s'accorde avec le sujet : <b>votre demande</b>, féminin singulier → enregistrée.</td></tr><tr><td><b>2</b></td><td>employé seul</td><td>Employé sans auxiliaire, le participe s'accorde comme un adjectif avec le nom : <b>une étape</b> imposée.</td></tr><tr><td><b>3</b></td><td>avec avoir, COD avant</td><td>Vous m'avez transmis quoi ? « que » = <b>les pièces</b>, placé avant le verbe → accord : transmises.</td></tr><tr><td><b>4</b></td><td>avec être (passif)</td><td>« ont été » = être. Sujet : <b>les pièces</b>, féminin pluriel → vérifiées.</td></tr><tr><td><b>5</b></td><td>avec être (passif)</td><td>Même sujet, même accord : numérisées.</td></tr><tr><td><b>6</b></td><td>avec avoir, COD après</td><td>Nous avons reçu quoi ? <b>le colis</b>, placé APRÈS le verbe → pas d'accord. Et jamais d'accord avec le sujet « nous ».</td></tr><tr><td><b>7</b></td><td>avec avoir, COD avant</td><td>Vous avez choisi quoi ? « que » = <b>la date</b>, placé avant → choisie. Le test du féminin ne s'entend pas toujours : « choisie » sonne comme « choisi », mais « la date que vous avez prise » s'entend.</td></tr><tr><td><b>8</b></td><td>avec être (passif)</td><td>« ont été » = être. Sujet : <b>les conditions de garantie</b> → remises.</td></tr></tbody></table>
+</div>
+
+<h2><span class="num">3 ·</span>Ce qu'il faut en retenir</h2>
+<div class="carte"><div class="enc"><span class="t">CE QUE CE MAIL MONTRE</span>Huit fautes, et toutes relèvent de trois règles seulement. Remarquez aussi « le colis que vous avez déposé » : « que » reprend un nom masculin singulier, le participe est donc juste tel quel. Bien accorder, c'est aussi savoir quand ne rien changer.</div><div class="enc al"><span class="t">CE QUE LA CLIENTE RETIENT</span>Un document qui récapitule les pièces qu'elle a fournies, avec des fautes à chaque ligne. Elle le gardera : c'est l'image de l'entreprise qu'elle conserve.</div><div class="enc ci"><span class="t">LA MÉTHODE</span>Pour chaque participe : 1) quel est l'auxiliaire ? 2) avec être ou seul, je cherche le sujet ou le nom ; 3) avec avoir, je pose la question « quoi ? » et je regarde si la réponse est AVANT le verbe.</div></div>
+</div>
+
+
+<footer>TMK Performances - N° Siret : 49841924100027 - Code NAF : 8559A</footer>
+</div>
+</body></html>
